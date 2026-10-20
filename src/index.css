@@ -1,0 +1,193 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Lufga';
+  src: url('/fonts/lufga-black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lufga';
+  src: url('/fonts/lufga-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/ubuntu-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/fonts/ubuntu-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-navy: #192730;
+  --color-navy-deep: #111c23;
+  --color-navy-2: #2d3d4b;
+  --color-ink: #1a1a1a;
+  --color-graphite: #3c3c3b;
+  --color-mist: #e6e6e6;
+  --color-lime: #91d336;
+  --color-olive: #adb65d;
+  --font-display: 'Lufga', 'Ubuntu', system-ui, sans-serif;
+  --font-sans: 'Ubuntu', system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html {
+  background: var(--color-navy);
+  color: var(--color-mist);
+  color-scheme: dark;
+  scrollbar-color: var(--color-navy-2) var(--color-navy-deep);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+}
+
+input,
+select,
+textarea {
+  caret-color: var(--color-lime);
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Primary action: the only lime surface on the page */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 3.25rem;
+  padding: 0 1.4rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms ease;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn-primary {
+  background: var(--color-lime);
+  color: var(--color-navy);
+}
+.btn-primary svg {
+  transition: transform 200ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: #a3df52;
+  }
+  .btn-primary:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-mist) 35%, transparent);
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    text-decoration-color: var(--color-lime);
+  }
+}
+
+/* Soft navy pool behind copy that sits on the facade */
+.scrim {
+  position: relative;
+  isolation: isolate;
+}
+.scrim::before {
+  content: '';
+  position: absolute;
+  inset: -18% -14%;
+  z-index: -1;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--color-navy-deep) 82%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.field {
+  width: 100%;
+  height: 3.25rem;
+  padding: 0 1rem;
+  border-radius: 4px;
+  border: 1px solid color-mix(in oklab, var(--color-mist) 22%, transparent);
+  background: var(--color-navy-deep);
+  color: var(--color-mist);
+  font-size: 1rem;
+  transition: border-color 160ms ease;
+}
+textarea.field {
+  height: auto;
+  min-height: 7.5rem;
+  padding: 0.85rem 1rem;
+  resize: vertical;
+}
+.field::placeholder {
+  color: color-mix(in oklab, var(--color-mist) 55%, transparent);
+}
+.field:focus-visible {
+  outline: none;
+  border-color: var(--color-lime);
+}
+.field[aria-invalid='true'] {
+  border-color: #e0866b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+  }
+}
