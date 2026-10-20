@@ -1,4 +1,5 @@
-const words = ['Eficiência.', 'Precisão.', 'Segurança.']
+// Facts only: each line is something the Booming method does, as stated by Carlos.
+const facts = ['Ninguém suspenso.', 'Pilotagem certificada.', 'Tudo a partir do chão.']
 
 export default function Why() {
   return (
@@ -8,20 +9,21 @@ export default function Why() {
           Porquê a Booming
         </h2>
         <div className="flex flex-col gap-[6vh]">
-          {words.map((w, i) => (
+          {facts.map((w, i) => (
             <p
               key={w}
               data-wipe
-              className={`scrim w-fit font-display text-[clamp(3.2rem,9vw,6rem)] font-black leading-[0.95] tracking-[-0.035em] ${
-                i === 1 ? 'md:ml-[18%]' : i === 2 ? 'text-lime md:ml-[36%]' : ''
+              className={`scrim w-fit font-display text-[clamp(2.8rem,8vw,5.5rem)] font-black leading-[0.95] tracking-[-0.035em] ${
+                i === 1 ? 'md:ml-[18%]' : i === 2 ? 'text-lime md:ml-[30%]' : ''
               }`}
             >
               {w}
             </p>
           ))}
         </div>
-        <p data-wipe className="scrim mt-[12vh] max-w-[38ch] text-xl leading-relaxed md:ml-[36%]">
-          Ninguém suspenso. Pilotos com certificação em drones. Uma operação planeada e conduzida a partir do chão.
+        <p data-wipe className="scrim mt-[12vh] max-w-[38ch] text-xl leading-relaxed md:ml-[30%]">
+          A equipa planeia o voo, o drone faz a subida e o trabalho em altura. O risco fica com a máquina, não com as
+          pessoas.
         </p>
       </div>
     </section>

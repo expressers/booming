@@ -18,7 +18,7 @@ STORY: Understand that facades can be cleaned at height with nobody hanging from
 
 FIRST VIEWPORT: Full-bleed WebGL dusk sky and the top of the tower; the drone hovers right of centre with its hose falling out of frame. Bottom left, Lufga Black headline "Para além do alcance." at about 7.5vw, two lines max, a 20-word subline, lime "Pedir cotação" button. Slim nav top. Altitude HUD on the right edge.
 
-FORM: brief-pinned direction from Eládio (cinematic, 3D drone descending with ScrollTrigger while cleaning); concept-seed not run because the brief pins it; signature interaction: scroll-scrubbed descent painting a clean mask on dirty glass. Build path: code-led (no image generation available).
+FORM: brief-pinned direction from Eládio (cinematic, 3D drone descending with ScrollTrigger while cleaning); seed roll waived, direction pinned in his words: "Quero um site cinematográfico, que use elementos 3D, a intenção é ter um drone 3d no site a descer com o scroll trigger limpando"; signature interaction: scroll-scrubbed descent painting a clean mask on dirty glass. Build path: code-led (no image generation available).
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 

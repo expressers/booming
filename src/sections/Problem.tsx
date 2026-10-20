@@ -7,7 +7,7 @@ const before = [
 const after = [
   'A equipa trabalha a partir do chão',
   'Um drone ligado por mangueira a uma estação em terra',
-  'Água filtrada que seca sem marcas',
+  'Sem gruas nem plataformas a ocupar a rua',
 ]
 
 export default function Problem() {

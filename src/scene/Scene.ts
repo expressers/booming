@@ -60,7 +60,7 @@ export function createScene(
       depthWrite: false,
     }),
   )
-  sky.position.set(0, 150, -160)
+  sky.position.set(0, 175, -160)
   scene.add(sky)
 
   // Clean mask: white where the jet has washed the glass.
@@ -119,6 +119,34 @@ export function createScene(
   pad.rotation.x = -Math.PI / 2
   pad.position.set(padX, 0.02, DRONE_Z)
   scene.add(pad)
+  // Landing ground: the brand pattern from the manual (isotipo glyph tiled on navy), drawn from its exact path.
+  const patCanvas = document.createElement('canvas')
+  patCanvas.width = patCanvas.height = 256
+  const pctx = patCanvas.getContext('2d')!
+  pctx.fillStyle = '#111c23'
+  pctx.fillRect(0, 0, 256, 256)
+  pctx.save()
+  pctx.translate(3, 3)
+  pctx.fillStyle = '#91d336'
+  pctx.fill(
+    new Path2D(
+      'M203.12,158.15a44.4,44.4,0,0,1-44.4,44.4H46.88V153c0-5,.17-58.63.17-60.71A44.75,44.75,0,0,1,91.74,47.45H156V98.71H101.36l-45.48,45.8,52.45.21h.32v53.86l14.23-14.24L156,151.26V98.71h47.07a43.73,43.73,0,0,1-.84,6.31,44.26,44.26,0,0,1-11.77,22.07,44.14,44.14,0,0,1,12.68,31.06Z',
+    ),
+  )
+  pctx.restore()
+  const patTex = new THREE.CanvasTexture(patCanvas)
+  patTex.colorSpace = THREE.SRGBColorSpace
+  patTex.wrapS = patTex.wrapT = THREE.RepeatWrapping
+  patTex.repeat.set(12, 6)
+  patTex.anisotropy = 4
+  const apron = new THREE.Mesh(
+    new THREE.PlaneGeometry(36, 18),
+    new THREE.MeshBasicMaterial({ map: patTex, transparent: true, opacity: 0.5, toneMapped: false }),
+  )
+  apron.rotation.x = -Math.PI / 2
+  apron.position.set(padX - 2, 0.01, DRONE_Z + 4)
+  scene.add(apron)
+
   const station = new THREE.Mesh(new RoundedBoxGeometry(2.2, 1.1, 1.4, 2, 0.12), parapetMat)
   station.position.copy(STATION)
   scene.add(station)
@@ -157,7 +185,7 @@ export function createScene(
   const sprayGeo = new THREE.BufferGeometry()
   sprayGeo.setAttribute('position', new THREE.BufferAttribute(sprayPos, 3))
   const sprayMat = new THREE.PointsMaterial({
-    color: '#e9f6d4',
+    color: '#c9ef8f',
     size: 0.05,
     transparent: true,
     opacity: 0.55,
@@ -207,7 +235,7 @@ export function createScene(
 
   // Visible jet and impact glow
   const jetMat = new THREE.MeshBasicMaterial({
-    color: '#eef7e3',
+    color: '#bfe97a',
     transparent: true,
     opacity: 0.32,
     depthWrite: false,
@@ -221,9 +249,9 @@ export function createScene(
   glowCanvas.width = glowCanvas.height = 64
   const gctx = glowCanvas.getContext('2d')!
   const gg = gctx.createRadialGradient(32, 32, 0, 32, 32, 32)
-  gg.addColorStop(0, 'rgba(240,248,232,0.9)')
-  gg.addColorStop(0.35, 'rgba(220,236,210,0.35)')
-  gg.addColorStop(1, 'rgba(220,236,210,0)')
+  gg.addColorStop(0, 'rgba(196,236,130,0.95)')
+  gg.addColorStop(0.35, 'rgba(145,211,54,0.4)')
+  gg.addColorStop(1, 'rgba(145,211,54,0)')
   gctx.fillStyle = gg
   gctx.fillRect(0, 0, 64, 64)
   const glowTex = new THREE.CanvasTexture(glowCanvas)
@@ -289,7 +317,11 @@ export function createScene(
     const idle = opts.reduceMotion ? 0 : Math.sin(time * 0.32) * Math.min(2.2, amp * 0.35)
     const sweep = amp * Math.cos(current * PASSES * Math.PI) + idle
     const x = THREE.MathUtils.lerp(sweep, padX, landing)
-    const y = THREE.MathUtils.lerp(DRONE_TOP, DRONE_BOTTOM, current)
+    // Hero factor: 1 at the very top of the page, 0 once the descent has begun.
+    const hero = 1 - THREE.MathUtils.smoothstep(current, 0, 0.05)
+    const portrait = camera.aspect < 0.85
+    // On tall screens the drone starts closer to the roof so roof, sky and drone fit above the copy.
+    const y = THREE.MathUtils.lerp(DRONE_TOP, DRONE_BOTTOM, current) + (portrait ? 3 * hero : 0)
     const bob = opts.reduceMotion ? 0 : Math.sin(time * 1.7) * 0.08 * (1 - landing)
     drone.group.position.set(x, y + bob, DRONE_Z)
 
@@ -372,12 +404,13 @@ export function createScene(
     pointer.sx += (pointer.x - pointer.sx) * 0.04
     pointer.sy += (pointer.y - pointer.sy) * 0.04
     // At the top the camera lifts to show the roofline against the sky.
-    const lift = (1 - THREE.MathUtils.smoothstep(current, 0, 0.05)) * 2
+    const lift = hero * 4.6
     // On tall screens the copy fills the lower half, so the drone flies in the upper third.
-    const portraitOffset = camera.aspect < 0.85 ? -4.2 * (1 - landing) : 0
-    const camY = y + 1.3 + lift + portraitOffset - pointer.sy * 0.6 + landing * 2.2
+    const portraitOffset = portrait ? THREE.MathUtils.lerp(-4.2, -0.6, hero) * (1 - landing) : 0
+    const center = portrait ? y + portraitOffset : y + 0.4 + lift * 0.9
+    const camY = center + 0.9 - pointer.sy * 0.6 + landing * 2.2
     camera.position.set(pointer.sx * 1.4, camY, camZ + landing * 6)
-    tmp.set(pointer.sx * 0.3, y + 0.4 + lift * 0.9 + portraitOffset + landing * 0.8, 0)
+    tmp.set(pointer.sx * 0.3, center + landing * 0.8, 0)
     camera.lookAt(tmp)
 
     renderer.render(scene, camera)

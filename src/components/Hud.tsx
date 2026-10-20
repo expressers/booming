@@ -2,6 +2,14 @@
 // directly to the DOM, so scrolling never re-renders React.
 export default function Hud() {
   return (
+    <>
+    <span
+      aria-hidden="true"
+      id="hud-alt-m"
+      className="tnum pointer-events-none fixed right-5 top-[84px] z-20 font-display text-lg font-medium md:hidden"
+    >
+      144 m
+    </span>
     <aside
       aria-hidden="true"
       className="pointer-events-none fixed right-5 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-end gap-3 md:right-10 md:flex"
@@ -18,5 +26,6 @@ export default function Hud() {
       </span>
       <span className="text-[13px] text-mist/70">Solo</span>
     </aside>
+    </>
   )
 }

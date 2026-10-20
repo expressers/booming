@@ -53,6 +53,7 @@ export default function App() {
     // The descent: the whole page down to the quote section is one drone flight.
     const alt = document.getElementById('hud-alt')
     const mark = document.getElementById('hud-mark')
+    const altM = document.getElementById('hud-alt-m')
     const descent = ScrollTrigger.create({
       trigger: document.documentElement,
       start: 'top top',
@@ -61,7 +62,9 @@ export default function App() {
       onUpdate: (self) => {
         progress = self.progress
         scene?.setProgress(progress)
-        if (alt) alt.textContent = `${Math.round((1 - progress) * TOP_ALT)} m`
+        const m = `${Math.round((1 - progress) * TOP_ALT)} m`
+        if (alt) alt.textContent = m
+        if (altM) altM.textContent = m
         if (mark) mark.style.transform = `translateY(${progress * 167}px)`
       },
     })

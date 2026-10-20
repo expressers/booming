@@ -10,13 +10,23 @@ void main() {
 
 export const skyFragment = /* glsl */ `
 varying vec2 vUv;
+float h1(float x) { return fract(sin(x * 91.7) * 43758.5453); }
 void main() {
-  vec3 top = vec3(0.067, 0.11, 0.137);
-  vec3 mid = vec3(0.098, 0.153, 0.188);
-  vec3 horizon = vec3(0.235, 0.29, 0.31);
+  // Dusk over Luanda: deep navy overhead, a cool band low on the horizon, the city skyline under it.
+  vec3 top = vec3(0.05, 0.08, 0.105);
+  vec3 mid = vec3(0.1, 0.155, 0.195);
+  vec3 dusk = vec3(0.3, 0.37, 0.43);
   float t = vUv.y;
-  vec3 c = mix(horizon, mid, smoothstep(0.3, 0.6, t));
-  c = mix(c, top, smoothstep(0.6, 1.0, t));
+  vec3 c = mix(dusk, mid, smoothstep(0.5, 0.6, t));
+  c = mix(c, top, smoothstep(0.6, 0.85, t));
+  // Distant skyline silhouette along the horizon, with a few lit windows
+  float col = floor(vUv.x * 420.0);
+  float tall = step(0.4, h1(col + 3.1));
+  float hgt = 0.483 + h1(col) * 0.005 + h1(col + 9.7) * 0.014 * tall;
+  float city = step(t, hgt);
+  vec3 cityCol = vec3(0.1, 0.14, 0.17);
+  float win = step(0.93, h1(floor(vUv.x * 2600.0) + floor(t * 2400.0) * 13.0)) * city * step(0.484, t);
+  c = mix(c, cityCol, city) + win * vec3(0.16, 0.16, 0.13);
   gl_FragColor = vec4(c, 1.0);
 }
 `
@@ -85,7 +95,7 @@ void main() {
 
   // Wet sheen where the jet has just passed
   float edge = m * (1.0 - m) * 4.0;
-  col += vec3(0.85, 0.9, 0.92) * edge * 0.05;
+  col += vec3(0.57, 0.83, 0.21) * edge * 0.09;
 
   // Spandrel panels: matte, dirt still shows but less
   vec3 span = mix(vec3(0.13, 0.17, 0.2), vec3(0.24, 0.235, 0.2), dirt * 0.55 * (1.0 - cm));

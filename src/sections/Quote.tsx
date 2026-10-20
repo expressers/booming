@@ -100,9 +100,13 @@ export default function Quote() {
             Peça uma cotação.
           </h2>
           <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-mist/85">
-            Conte-nos sobre o edifício. A mensagem segue para o WhatsApp da Booming, pronta a enviar, e respondemos com
-            uma proposta.
+            {CONTACT.whatsapp
+              ? 'Conte-nos sobre o edifício. A mensagem segue para o WhatsApp da Booming, pronta a enviar, e respondemos com uma proposta.'
+              : 'Conte-nos sobre o edifício. A mensagem abre no WhatsApp, pronta a enviar, e respondemos com uma proposta.'}
           </p>
+          {!CONTACT.whatsapp && (
+            <p className="mt-4 text-[15px] text-mist/70">Número de WhatsApp da Booming por confirmar.</p>
+          )}
           <p className="mt-10 text-mist/70">{CONTACT.city}</p>
           {CONTACT.email && (
             <a href={`mailto:${CONTACT.email}`} className="link mt-2 inline-block">
