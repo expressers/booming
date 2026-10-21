@@ -4,6 +4,17 @@ Site da Booming Soluções Aéreas: limpeza de fachadas em altura com drones, em
 
 O conceito é **A Descida**: a página é a fachada de uma torre de vidro. O scroll desce um drone de limpeza andar a andar, o jacto limpa o vidro e o conteúdo aparece. No fim, o drone aterra junto ao formulário de cotação.
 
+## Proposta 2: Do lado de dentro (`/proposta-2/`)
+
+Lançamento de produto, em navy e branco. A primeira cena fica dentro de um escritório, a olhar por um vidro sujo. Lá fora, um drone limpa a janela linha a linha com o scroll, e no fim a câmara atravessa o vidro para o branco. Seguem-se:
+
+- o drone em vista explodida;
+- um manifesto que se acende palavra a palavra;
+- os serviços em panorâmica horizontal;
+- o fecho em navy com a cotação.
+
+O código está em `src/v2` e a entrada em `proposta-2/index.html`.
+
 ## Stack
 
 - Bun, Vite, React, TypeScript
