@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { lockScroll } from '../lib/motion'
 import { ArrowRight, List, X } from '@phosphor-icons/react'
 import Logo from './Logo'
 
@@ -29,18 +30,25 @@ export default function Nav() {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
+    lockScroll(true)
     return () => {
+      lockScroll(false)
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
     }
   }, [open])
 
-  const light = solid || open
+  // Dark ground everywhere except the open mobile menu, which is a white sheet.
+  const light = open
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow] duration-300 ${
-        light ? 'bg-white shadow-[0_1px_0_var(--color-line)]' : 'bg-transparent'
+        open
+          ? 'bg-white shadow-[0_1px_0_var(--color-line)]'
+          : solid
+            ? 'bg-navy-deep/95 shadow-[0_1px_0_rgb(255_255_255/0.08)] backdrop-blur-md'
+            : 'bg-transparent'
       }`}
     >
       <nav aria-label="Principal" className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between px-5 md:px-10">
@@ -59,7 +67,7 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <a href="#contactos" className={`btn !h-11 !px-4 text-[15px] ${light ? 'btn-navy' : 'btn-primary'} hidden sm:inline-flex`}>
+          <a href="#contactos" className="btn btn-primary !h-11 !px-4 text-[15px] hidden sm:inline-flex">
             Solicitar orçamento
             <ArrowRight size={16} weight="bold" aria-hidden />
           </a>

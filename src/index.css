@@ -45,7 +45,7 @@
 }
 
 html {
-  background: #ffffff;
+  background: var(--color-navy-deep);
   color: var(--color-navy);
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
@@ -57,7 +57,20 @@ html {
   }
 }
 
+/* Lenis owns smooth scrolling when it runs */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
+  background: #fff;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -214,12 +227,12 @@ textarea.field {
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     transition:
-      opacity 700ms var(--ease-out),
-      transform 700ms var(--ease-out);
+      opacity 900ms var(--ease-out),
+      transform 1100ms var(--ease-out);
   }
   .js [data-reveal]:not([data-in]) {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(40px);
   }
 }
 

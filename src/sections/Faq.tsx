@@ -3,7 +3,7 @@ import { faq } from '../content'
 
 export default function Faq() {
   return (
-    <section id="faq" className="bg-paper py-24 md:py-32">
+    <section id="faq" className="bg-paper py-24 md:py-36">
       <div className="mx-auto grid max-w-[1320px] gap-12 px-5 md:px-10 lg:grid-cols-12 lg:gap-16">
         <h2
           data-reveal

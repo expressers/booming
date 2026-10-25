@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { ScrollTrigger, startSmoothScroll } from './lib/motion'
 import Nav from './components/Nav'
 import Hero from './sections/Hero'
 import Intro from './sections/Intro'
@@ -29,7 +30,16 @@ export default function App() {
       { rootMargin: '0px 0px -8% 0px' },
     )
     document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el))
-    return () => io.disconnect()
+    const stop = startSmoothScroll()
+    // Layout settles once fonts and images arrive; re-measure every scroll scene then.
+    const refresh = () => ScrollTrigger.refresh()
+    document.fonts?.ready.then(refresh)
+    window.addEventListener('load', refresh)
+    return () => {
+      io.disconnect()
+      stop()
+      window.removeEventListener('load', refresh)
+    }
   }, [])
 
   return (

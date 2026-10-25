@@ -1,106 +1,101 @@
-import { useState } from 'react'
-import { ArrowRight, Plus } from '@phosphor-icons/react'
-import { services, type Service } from '../content'
+import { useEffect, useRef } from 'react'
+import { gsap } from '../lib/motion'
+import { services } from '../content'
 
-function Detail({ s }: { s: Service }) {
-  return (
-    <>
-      <div className="space-y-4 text-lg leading-relaxed text-navy/75">
-        {s.paragraphs.map((p) => (
-          <p key={p.slice(0, 20)}>{p}</p>
-        ))}
-      </div>
-      <h4 className="mt-8 font-display text-base font-medium">Aplicações</h4>
-      <ul className="mt-3 grid gap-x-8 sm:grid-cols-2">
-        {s.applications.map((a) => (
-          <li key={a} className="flex gap-3 border-t border-line py-3 text-[15px]">
-            <span aria-hidden className="mt-[0.55em] h-1.5 w-1.5 shrink-0 bg-lime" />
-            {a}
-          </li>
-        ))}
-      </ul>
-    </>
-  )
-}
-
+// Desktop: the five services pass sideways like a drone working along a facade, one panel per
+// stretch of scroll. Phones, tablets and reduced motion get the same panels stacked.
 export default function Services() {
-  const [active, setActive] = useState(0)
-  const s = services[active]
+  const wrap = useRef<HTMLDivElement>(null)
+  const track = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const mm = gsap.matchMedia()
+    mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+      const w = wrap.current!
+      const t = track.current!
+      const distance = () => t.scrollWidth - window.innerWidth
+      const fit = () => (w.style.height = `${distance() + window.innerHeight}px`)
+      fit()
+      const tween = gsap.to(t, {
+        x: () => -distance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: w,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true,
+          onRefreshInit: fit,
+        },
+      })
+      gsap.utils.toArray<HTMLElement>('[data-pan-img]').forEach((img) => {
+        gsap.fromTo(
+          img,
+          { xPercent: -8 },
+          {
+            xPercent: 8,
+            ease: 'none',
+            scrollTrigger: { trigger: img.parentElement, containerAnimation: tween, start: 'left right', end: 'right left', scrub: true },
+          },
+        )
+      })
+      return () => {
+        w.style.height = ''
+      }
+    })
+    return () => mm.revert()
+  }, [])
 
   return (
-    <section id="servicos" className="mx-auto max-w-[1320px] px-5 py-24 md:px-10 md:py-32">
-      <h2 data-reveal className="font-display text-[clamp(2rem,4vw,3.5rem)] font-black leading-[1.02] tracking-[-0.025em]">
-        Os nossos serviços.
-      </h2>
+    <section id="servicos" className="on-dark bg-navy text-white">
+      <div className="mx-auto max-w-[1320px] px-5 pb-12 pt-24 md:px-10 md:pt-36 lg:pb-0">
+        <h2 data-reveal className="font-display text-[clamp(2.25rem,4.6vw,4.25rem)] font-black leading-[0.98] tracking-[-0.03em]">
+          Os nossos serviços.
+        </h2>
+      </div>
 
-      {/* Desktop: a list of services drives one detail panel */}
-      <div className="mt-14 hidden gap-14 lg:grid lg:grid-cols-12">
-        <div role="tablist" aria-label="Serviços" aria-orientation="vertical" className="col-span-4 flex flex-col">
-          {services.map((x, i) => (
-            <button
-              key={x.id}
-              id={`tab-${x.id}`}
-              role="tab"
-              aria-selected={i === active}
-              aria-controls="servico-painel"
-              tabIndex={i === active ? 0 : -1}
-              onClick={() => setActive(i)}
-              onKeyDown={(e) => {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                  e.preventDefault()
-                  const n = (active + (e.key === 'ArrowDown' ? 1 : -1) + services.length) % services.length
-                  setActive(n)
-                  document.getElementById(`tab-${services[n].id}`)?.focus()
-                }
-              }}
-              className={`group flex items-center justify-between gap-4 border-t border-line py-5 text-left font-display text-xl font-medium transition-colors duration-200 last:border-b ${
-                i === active ? 'text-navy' : 'text-navy/45 hover:text-navy/80'
-              }`}
-            >
-              {x.name}
-              <ArrowRight
-                size={18}
-                weight="bold"
-                aria-hidden
-                className={`shrink-0 transition-[opacity,transform] duration-200 ${
-                  i === active ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0'
-                }`}
-              />
-            </button>
-          ))}
-        </div>
-
-        <div id="servico-painel" role="tabpanel" aria-labelledby={`tab-${s.id}`} className="col-span-8 grid grid-cols-8 gap-10">
-          <img
-            key={s.image}
-            src={s.image}
-            alt={s.alt}
-            loading="lazy"
-            className="col-span-3 aspect-[3/4] w-full object-cover [animation:fade_400ms_var(--ease-out)]"
-          />
-          <div key={s.id} className="col-span-5 [animation:fade_400ms_var(--ease-out)]">
-            <h3 className="font-display text-3xl font-black leading-[1.05] tracking-[-0.02em]">{s.name}</h3>
-            <div className="mt-6">
-              <Detail s={s} />
-            </div>
+      <div ref={wrap} className="relative">
+        <div className="lg:motion-safe:sticky lg:motion-safe:top-0 lg:motion-safe:h-[100svh] lg:motion-safe:overflow-hidden">
+          <div
+            ref={track}
+            className="flex flex-col gap-20 px-5 pb-24 md:px-10 lg:motion-safe:h-full lg:motion-safe:w-max lg:motion-safe:flex-row lg:motion-safe:items-center lg:motion-safe:gap-[6vw] lg:motion-safe:px-[max(2.5rem,calc((100vw-1320px)/2+2.5rem))] lg:motion-safe:pb-0"
+          >
+            {services.map((s, i) => (
+              <article
+                key={s.id}
+                className="grid gap-8 lg:grid-cols-12 lg:gap-12 lg:motion-safe:w-[min(1180px,84vw)] lg:motion-safe:shrink-0"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7 lg:aspect-auto lg:h-[68svh]">
+                  <img
+                    data-pan-img
+                    src={s.image}
+                    alt={s.alt}
+                    loading={i < 2 ? 'eager' : 'lazy'}
+                    className="absolute inset-0 h-full w-full scale-[1.18] object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center lg:col-span-5">
+                  <span aria-hidden className="block h-[3px] w-10 bg-lime" />
+                  <h3 className="mt-6 font-display text-[clamp(1.75rem,2.8vw,2.6rem)] font-black leading-[1.02] tracking-[-0.025em]">
+                    {s.name}
+                  </h3>
+                  <div className="mt-6 space-y-4 leading-relaxed text-white/75 lg:text-[17px]">
+                    {s.paragraphs.map((p) => (
+                      <p key={p.slice(0, 20)}>{p}</p>
+                    ))}
+                  </div>
+                  <ul className="mt-7 flex flex-wrap gap-2">
+                    {s.applications.map((a) => (
+                      <li key={a} className="rounded-full border border-white/20 px-3.5 py-1.5 text-[14px] text-white/85">
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
-      </div>
-
-      {/* Mobile and tablet: every service as an expandable row */}
-      <div className="mt-10 lg:hidden">
-        {services.map((x, i) => (
-          <details key={x.id} open={i === 0} className="group border-t border-line last:border-b">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-xl font-medium [&::-webkit-details-marker]:hidden">
-              {x.name}
-              <Plus size={20} aria-hidden className="shrink-0 transition-transform duration-200 group-open:rotate-45" />
-            </summary>
-            <div className="pb-8">
-              <img src={x.image} alt={x.alt} loading="lazy" className="mb-6 aspect-[16/10] w-full object-cover" />
-              <Detail s={x} />
-            </div>
-          </details>
-        ))}
       </div>
     </section>
   )

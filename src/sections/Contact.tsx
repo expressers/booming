@@ -100,7 +100,7 @@ export default function Contact() {
   )
 
   return (
-    <section id="contactos" className="on-dark bg-navy py-24 text-white md:py-32">
+    <section id="contactos" className="on-dark bg-navy py-24 text-white md:py-36">
       <div className="mx-auto grid max-w-[1320px] gap-14 px-5 md:px-10 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <h2 data-reveal className="font-display text-[clamp(2.2rem,4.6vw,4rem)] font-black leading-[1] tracking-[-0.03em]">

@@ -5,23 +5,23 @@ primary_target: "src/App.tsx"
 related_targets: []
 ---
 
-Scope: single-page institutional site for BOOMING Soluções Aéreas. Mode: Persuade.
-Audience: facility managers, banks, hotels, hospitals, solar and industrial operators in Angola. Action: request a quote (WhatsApp prefilled). Proof: the client's own service descriptions and process; stock imagery labelled illustrative. Constraints: Portuguese, client copy verbatim, no 3D (Eládio, 25/10/2026), fast.
+Scope: single-page cinematic site for BOOMING Soluções Aéreas. Mode: Persuade.
+Audience: facility managers, banks, hotels, hospitals, solar and industrial operators in Angola. Action: request a quote (WhatsApp prefilled). Proof: the client's own service descriptions and process; stock photo and video labelled illustrative. Constraints: Portuguese, client copy verbatim, no Three.js 3D, 60-30-10 colour (Eládio, 25/10/2026), fast on mobile.
 
 ## Direction contract
 
-THESIS: A first-class technical dossier, not a startup landing: large photography, heavy Lufga headlines, hairline structure. Refuses the 3D concept pieces and the generic three-card SaaS layout.
+THESIS: The cleaning pass. The page is a drone flight: it opens against tower glass and pulls back over the city on scroll, then uncovers every image top to bottom behind a lime edge. Refuses the previous institutional page ("parece feito por IA") and the 3D concepts.
 
-OWN-WORLD: White and paper ground, navy #192730 for authority blocks (sectors, safety, contact), lime #91d336 only for action and signal. Lufga Black headlines in sentence case, Ubuntu body, 1px lines instead of cards, 4px radius on controls only.
+OWN-WORLD: Navy deep and navy as the 60, white and paper as the 30, lime #91d336 as the 10 (action, wipe edge, process route). Lufga Black headlines, Ubuntu body, hairlines not cards.
 
-STORY: Understand what BOOMING does (hero, intro, services), believe it is serious (sectors, reasons, five-step process, safety), act (quote form).
+STORY: Fly in (hero scrub), understand (intro clears word by word, about, services pan), believe (sectors, reasons, process route, safety over drone video), act (quote form).
 
-FIRST VIEWPORT: Full-bleed photo of a glass tower under sky with a navy gradient from the left; headline "O futuro da limpeza e manutenção está no ar." bottom left at about 5vw, subtitle, lime "Solicitar orçamento" plus outline "Conhecer os nossos serviços". Transparent nav that turns white after the hero.
+FIRST VIEWPORT: Frame 1 of the flight, glass facade close up with the city beyond; headline "O futuro da limpeza e manutenção está no ar." rising word by word bottom left, subtitle, lime "Solicitar orçamento" plus outline "Conhecer serviços". Transparent nav.
 
-FORM: brief-pinned by Eládio's answers (institutional premium, one long page, stock photography). Seed roll waived. Signature interaction: services list driving a detail panel. Build path: code-led.
+FORM: brief-pinned by Eládio (cinematic, scroll-scrubbed drone video hero, Emil/Taste/Impeccable, 60-30-10). Seed 2fd32949 rolled the curtain-wall grid and cleaning-pass direction; kept as the motion grammar under the pinned brief. Raise from the transit-map challenger (declined): one line burning brightest, used as the lime process route. Build path: code-led.
 
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster and video carrying its provenance
 
 ## Unresolved
 
-WhatsApp number and email (client: "a confirmar"); final domain; real project photos.
+WhatsApp number and email (client: "a confirmar"); final domain; real project photos and footage.
