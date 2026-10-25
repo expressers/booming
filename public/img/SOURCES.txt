@@ -12,3 +12,4 @@ facade-c.webp https://images.unsplash.com/photo-1523477593243-78bbf626fd3b
 roof-c.webp https://images.unsplash.com/photo-1758304481667-71d545c91241
 drone-ops.webp https://images.unsplash.com/photo-1584598416417-84bd357908ef
 city-b.webp https://images.unsplash.com/photo-1736670996121-c6f5e5bf04b9
+drone-spray.webp https://images.unsplash.com/photo-1713952152768-5f28b8093166

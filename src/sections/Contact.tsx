@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { MapPin, WhatsappLogo } from '@phosphor-icons/react'
+import { EnvelopeSimple, MapPin, WhatsappLogo } from '@phosphor-icons/react'
 import { CONTACT, SERVICE_OPTIONS } from '../config'
 import { contact } from '../content'
 
@@ -63,9 +63,9 @@ export default function Contact() {
       document.getElementById(`c-${first}`)?.focus()
       return
     }
+    if (!CONTACT.whatsapp) return
     const text = encodeURIComponent(buildMessage(f))
-    const url = CONTACT.whatsapp ? `https://wa.me/${CONTACT.whatsapp}?text=${text}` : `https://wa.me/?text=${text}`
-    window.open(url, '_blank', 'noopener')
+    window.open(`https://wa.me/${CONTACT.whatsapp}?text=${text}`, '_blank', 'noopener')
     setSent(true)
   }
 
@@ -106,28 +106,44 @@ export default function Contact() {
           <h2 data-reveal className="font-display text-[clamp(2.2rem,4.6vw,4rem)] font-black leading-[1] tracking-[-0.03em]">
             {contact.title}
           </h2>
-          <p data-reveal className="mt-8 text-xl leading-relaxed">
+          <p className="mt-8 text-xl leading-relaxed">
             {contact.lead}
           </p>
-          <p data-reveal className="mt-5 text-lg leading-relaxed text-white/75">
+          <p className="mt-5 text-lg leading-relaxed text-white/75">
             {contact.text}
           </p>
-          <dl data-reveal className="mt-10 space-y-4 text-white/85">
+          <dl className="mt-10 space-y-4 text-white/85">
             <div className="flex items-center gap-3">
               <MapPin size={20} aria-hidden className="text-lime" />
               <dt className="sr-only">Localização</dt>
               <dd>{CONTACT.location}</dd>
             </div>
-            {CONTACT.email && (
-              <div className="flex items-center gap-3">
-                <dt className="sr-only">Email</dt>
-                <dd>
+            <div className="flex items-center gap-3">
+              <EnvelopeSimple size={20} aria-hidden className="text-lime" />
+              <dt className="sr-only">Email</dt>
+              <dd>
+                {CONTACT.email ? (
                   <a className="link" href={`mailto:${CONTACT.email}`}>
                     {CONTACT.email}
                   </a>
-                </dd>
-              </div>
-            )}
+                ) : (
+                  <span className="text-white/55">Email: a confirmar</span>
+                )}
+              </dd>
+            </div>
+            <div className="flex items-center gap-3">
+              <WhatsappLogo size={20} aria-hidden className="text-lime" />
+              <dt className="sr-only">Telefone e WhatsApp</dt>
+              <dd>
+                {CONTACT.whatsapp ? (
+                  <a className="link" href={`https://wa.me/${CONTACT.whatsapp}`}>
+                    +{CONTACT.whatsapp}
+                  </a>
+                ) : (
+                  <span className="text-white/55">Telefone/WhatsApp: a confirmar</span>
+                )}
+              </dd>
+            </div>
           </dl>
         </div>
 
@@ -158,7 +174,7 @@ export default function Contact() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-5 sm:col-span-2">
-            <button type="submit" className="btn btn-navy">
+            <button type="submit" className="btn btn-navy" disabled={!CONTACT.whatsapp} aria-disabled={!CONTACT.whatsapp}>
               <WhatsappLogo size={20} weight="fill" aria-hidden />
               Solicitar orçamento
             </button>
@@ -167,7 +183,7 @@ export default function Contact() {
                 ? 'Abrimos o WhatsApp com o seu pedido. Só falta enviar.'
                 : CONTACT.whatsapp
                   ? ''
-                  : 'Número de WhatsApp da BOOMING por confirmar.'}
+                  : 'Os pedidos de orçamento online estarão disponíveis em breve.'}
             </p>
           </div>
         </form>

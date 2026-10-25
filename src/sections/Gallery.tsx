@@ -9,26 +9,21 @@ export default function Gallery() {
       <h2 data-reveal className="font-display text-[clamp(2rem,4vw,3.5rem)] font-black leading-[1.02] tracking-[-0.025em]">
         {gallery.title}
       </h2>
-      <p data-reveal className="mt-6 max-w-[60ch] text-lg leading-relaxed text-navy/75">
-        {gallery.intro}
+      <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-navy/75">{gallery.intro}</p>
+      <p className="mt-4 max-w-[60ch] leading-relaxed text-navy/70">
+        Imagens ilustrativas de banco de imagens. Os projectos da BOOMING serão publicados quando autorizados.
       </p>
 
       <ul className="mt-14 grid auto-rows-[220px] gap-4 sm:grid-cols-2 lg:auto-rows-[260px] lg:grid-cols-3">
         {gallery.items.map((g, i) => (
-          <li key={g.name} data-reveal className={`group flex flex-col ${spans[i]}`}>
+          <li key={g.name} className={`flex flex-col ${spans[i]}`}>
             <div className="min-h-0 flex-1 overflow-hidden">
-              <img
-                src={g.image}
-                alt={g.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.03]"
-              />
+              <img src={g.image} alt={g.alt} loading="lazy" className="h-full w-full object-cover" />
             </div>
             <p className="pt-3 font-display text-[15px] font-medium">{g.name}</p>
           </li>
         ))}
       </ul>
-      <p className="mt-6 text-sm text-navy/60">Imagens ilustrativas.</p>
     </section>
   )
 }

@@ -94,6 +94,11 @@ p {
 
 @layer components {
 /* Buttons: one radius (4px) for every control on the page */
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 .btn {
   display: inline-flex;
   align-items: center;

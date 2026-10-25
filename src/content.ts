@@ -241,7 +241,7 @@ export const gallery = {
     { name: 'Limpeza de painéis solares', image: '/img/solar-field.webp', alt: 'Fileiras de painéis solares num campo' },
     { name: 'Limpeza de estruturas industriais', image: '/img/roof-c.webp', alt: 'Instalação industrial vista do ar' },
     { name: 'Inspecção aérea', image: '/img/drone-dusk.webp', alt: 'Drone em voo ao entardecer' },
-    { name: 'Equipamentos e tecnologia', image: '/img/drone-white.webp', alt: 'Drone de carga em voo' },
+    { name: 'Equipamentos e tecnologia', image: '/img/drone-spray.webp', alt: 'Drone a pulverizar água em voo' },
     { name: 'Operações e preparação técnica', image: '/img/drone-ops.webp', alt: 'Drone a sobrevoar uma paisagem' },
   ],
 }

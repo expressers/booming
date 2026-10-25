@@ -16,7 +16,7 @@ export default function Process() {
           {/* The line joins the steps: it is the sequence, so it is drawn */}
           <span aria-hidden className="absolute left-[19px] top-2 bottom-2 w-px bg-navy/20 lg:left-0 lg:right-0 lg:top-[19px] lg:bottom-auto lg:h-px lg:w-auto" />
           {process.steps.map((s, i) => (
-            <li key={s.name} data-reveal className="relative grid grid-cols-[40px_1fr] gap-5 lg:block">
+            <li key={s.name} className="relative grid grid-cols-[40px_1fr] gap-5 lg:block">
               <span className="tnum relative z-10 grid h-10 w-10 place-items-center rounded-full bg-navy font-display text-[15px] font-medium text-white">
                 {i + 1}
               </span>

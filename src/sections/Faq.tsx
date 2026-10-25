@@ -11,7 +11,7 @@ export default function Faq() {
         >
           Perguntas frequentes.
         </h2>
-        <div data-reveal className="lg:col-span-8">
+        <div className="lg:col-span-8">
           {faq.map((f) => (
             <details key={f.q} className="group border-t border-line last:border-b">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-lg font-medium md:text-xl [&::-webkit-details-marker]:hidden">
