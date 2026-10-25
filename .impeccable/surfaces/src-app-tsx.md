@@ -5,23 +5,23 @@ primary_target: "src/App.tsx"
 related_targets: []
 ---
 
-Scope: single-page site for Booming Soluções Aéreas (src/App.tsx and its sections). Mode: Persuade.
-Audience: facility managers and safety-conscious companies in Luanda. Action: request a quote that opens WhatsApp prefilled. Proof: the mechanism dramatized (tethered drone cleaning a facade), no invented claims. Constraints: Portuguese, fast on mobile networks, no literal drone logo, IDV colours and fonts.
+Scope: single-page institutional site for BOOMING Soluções Aéreas. Mode: Persuade.
+Audience: facility managers, banks, hotels, hospitals, solar and industrial operators in Angola. Action: request a quote (WhatsApp prefilled). Proof: the client's own service descriptions and process; stock imagery labelled illustrative. Constraints: Portuguese, client copy verbatim, no 3D (Eládio, 25/10/2026), fast.
 
 ## Direction contract
 
-THESIS: The page is a glass tower facade and scrolling is the job: each scroll step lowers a tethered cleaning drone one floor and its jet cleans the glass, revealing the copy. Refuses the category default of a stock photo hero over three service cards.
+THESIS: A first-class technical dossier, not a startup landing: large photography, heavy Lufga headlines, hairline structure. Refuses the 3D concept pieces and the generic three-card SaaS layout.
 
-OWN-WORLD: Night facade in navy #192730 and #2d3d4b glass with grime; lime #91d336 is the only light (drone LEDs, jet, HUD marker, primary action); grey #e6e6e6 text. Lufga Black display against Ubuntu body; mullion grid and the angular brand line pattern as structure; 4px radius on controls only.
+OWN-WORLD: White and paper ground, navy #192730 for authority blocks (sectors, safety, contact), lime #91d336 only for action and signal. Lufga Black headlines in sentence case, Ubuntu body, 1px lines instead of cards, 4px radius on controls only.
 
-STORY: Understand that facades can be cleaned at height with nobody hanging from a rope; believe it by watching the drone do it floor by floor; act by requesting a quote at ground level.
+STORY: Understand what BOOMING does (hero, intro, services), believe it is serious (sectors, reasons, five-step process, safety), act (quote form).
 
-FIRST VIEWPORT: Full-bleed WebGL dusk sky and the top of the tower; the drone hovers right of centre with its hose falling out of frame. Bottom left, Lufga Black headline "Para além do alcance." at about 7.5vw, two lines max, a 20-word subline, lime "Pedir cotação" button. Slim nav top. Altitude HUD on the right edge.
+FIRST VIEWPORT: Full-bleed photo of a glass tower under sky with a navy gradient from the left; headline "O futuro da limpeza e manutenção está no ar." bottom left at about 5vw, subtitle, lime "Solicitar orçamento" plus outline "Conhecer os nossos serviços". Transparent nav that turns white after the hero.
 
-FORM: brief-pinned direction from Eládio (cinematic, 3D drone descending with ScrollTrigger while cleaning); seed roll waived, direction pinned in his words: "Quero um site cinematográfico, que use elementos 3D, a intenção é ter um drone 3d no site a descer com o scroll trigger limpando"; signature interaction: scroll-scrubbed descent painting a clean mask on dirty glass. Build path: code-led (no image generation available).
+FORM: brief-pinned by Eládio's answers (institutional premium, one long page, stock photography). Seed roll waived. Signature interaction: services list driving a detail panel. Build path: code-led.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Unresolved
 
-WhatsApp number, email, socials, domain; lime vs Carlos's no-green remark; per-service quote fields.
+WhatsApp number and email (client: "a confirmar"); final domain; real project photos.

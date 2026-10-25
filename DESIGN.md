@@ -1,30 +1,30 @@
 ---
-name: Booming Soluções Aéreas
-description: Limpeza de fachadas em altura com drones. Para além do alcance.
+name: BOOMING Soluções Aéreas
+description: Tecnologia aérea ao serviço da limpeza, manutenção e inspecção de infra-estruturas.
 colors:
   navy: "#192730"
   navy-deep: "#111c23"
   navy-2: "#2d3d4b"
-  ink: "#1a1a1a"
-  graphite: "#3c3c3b"
-  mist: "#e6e6e6"
+  white: "#ffffff"
+  paper: "#f5f6f7"
+  line: "#dfe3e6"
   lime: "#91d336"
   lime-hover: "#a3df52"
-  olive: "#adb65d"
-  error: "#f0a189"
+  error: "#c2412d"
+  error-text: "#b03a26"
 typography:
   display:
     fontFamily: "Lufga, Ubuntu, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 7.4vw, 6rem)"
+    fontSize: "clamp(2.6rem, 6vw, 5.25rem)"
     fontWeight: 900
-    lineHeight: 0.95
+    lineHeight: 0.98
     letterSpacing: "-0.03em"
   headline:
     fontFamily: "Lufga, Ubuntu, system-ui, sans-serif"
-    fontSize: "clamp(2.4rem, 5.2vw, 4.75rem)"
+    fontSize: "clamp(2rem, 4vw, 3.5rem)"
     fontWeight: 900
-    lineHeight: 1
-    letterSpacing: "-0.03em"
+    lineHeight: 1.02
+    letterSpacing: "-0.025em"
   title:
     fontFamily: "Lufga, Ubuntu, system-ui, sans-serif"
     fontSize: "1.25rem"
@@ -38,117 +38,119 @@ typography:
     fontFamily: "Ubuntu, system-ui, sans-serif"
     fontSize: "15px"
     fontWeight: 500
+  small:
+    fontFamily: "Ubuntu, system-ui, sans-serif"
+    fontSize: "14px"
+    fontWeight: 400
 rounded:
   control: "4px"
 spacing:
   gutter-mobile: "20px"
   gutter-desktop: "40px"
-  container: "1400px"
+  container: "1320px"
+  section: "96px / 128px"
 components:
   button-primary:
     backgroundColor: "{colors.lime}"
     textColor: "{colors.navy}"
     rounded: "{rounded.control}"
     height: "52px"
-    padding: "0 22px"
+    padding: "0 24px"
   button-primary-hover:
     backgroundColor: "{colors.lime-hover}"
+  button-navy:
+    backgroundColor: "{colors.navy}"
+    textColor: "{colors.white}"
+    rounded: "{rounded.control}"
+    height: "52px"
   input:
-    backgroundColor: "{colors.navy-deep}"
-    textColor: "{colors.mist}"
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.navy}"
     rounded: "{rounded.control}"
     height: "52px"
 ---
 
-# Design System: Booming Soluções Aéreas
+# Design System: BOOMING Soluções Aéreas
 
 ## Overview
 
-**Creative North Star: "A Descida"** (inferred; to confirm with Eládio)
+**Creative North Star: "Relatório técnico de primeira linha"**
 
-A night facade, cleaned floor by floor. The page is the glass of a tower, the scroll is the work and the drone is the only thing that moves with intent. Dark navy carries the whole world; lime is light, never decoration. Type is cinematic: one huge Lufga Black statement per section, Ubuntu for everything that is read.
+Institucional e premium, para gestores de bancos, hotéis, hospitais e indústria. O site parece um dossier técnico bem paginado: fotografia grande de fachadas, drones e parques solares, títulos pesados em Lufga, muito branco e blocos navy para os momentos de peso (sectores, segurança, contacto). Nada de 3D nem de efeitos; o movimento é uma subida curta ao entrar no ecrã.
 
 **Key Characteristics:**
-- Dark only. Navy ground everywhere, no section flips to light.
-- One accent, lime, reserved for light sources and the primary action.
-- 3D lives in one fixed WebGL scene behind the copy; DOM text sits on soft navy scrims.
-- Facts, not adjectives. No invented numbers, clients or claims.
+- Branco e papel como base, navy como cor de autoridade, lima só para acção e sinal.
+- Uma página longa com âncoras, oito secções na ordem dos textos do cliente.
+- Linhas finas (1px) para organizar conteúdo em vez de cartões.
+- Fotografia de banco de imagens marcada como ilustrativa até existirem trabalhos reais.
 
 ## Colors
 
-A cool night palette taken directly from Gláucio Salla's identity (manual, Out. 2026).
-
 ### Primary
-- **Sinal Lima** (#91d336): primary buttons, HUD marker, drone LEDs, the cleaning jet, the landing pad and the brand pattern. Nothing else is lime.
+- **Navy BOOMING** (#192730): texto, botões secundários, secções escuras (Sectores, Segurança, Contactos).
+- **Lima Sinal** (#91d336): botão principal sobre fundo escuro, ícones dos sectores, marcadores de lista, valores. Nunca em texto corrido.
 
 ### Neutral
-- **Navy Booming** (#192730): page ground, sky, nav when solid.
-- **Navy Profundo** (#111c23): form fields, footer, scrims.
-- **Navy Vidro** (#2d3d4b): glass, panels, scrollbar.
-- **Névoa** (#e6e6e6): all text; secondary text uses it at 70-85% opacity, never a separate grey.
+- **Branco** (#ffffff): fundo principal.
+- **Papel** (#f5f6f7): secções alternadas (Quem somos, Processo, FAQ).
+- **Linha** (#dfe3e6): divisórias e bordas de campos.
+- **Navy Profundo** (#111c23): rodapé e sobreposição do hero.
 
 ### Named Rules
-**The Only Light Rule.** Lime marks something that emits light or asks for action. If it is neither, it is not lime.
+**The Signal Rule.** O lima marca acção ou confirmação. Se não é botão, ícone de sector ou marcador, não é lima.
 
 ## Typography
 
-**Display Font:** Lufga (Black 900, Medium 500), self-hosted woff2
-**Body Font:** Ubuntu (Regular 400, Medium 500), self-hosted woff2
-**Character:** a heavy, round display face against a humanist technical sans; loud headlines, calm reading.
+**Display Font:** Lufga (900 e 500), self-hosted woff2
+**Body Font:** Ubuntu (400 e 500), self-hosted woff2
 
 ### Hierarchy
-- **Display** (900, clamp(3rem, 7.4vw, 6rem), 0.95): the hero line only.
-- **Headline** (900, clamp(2.4rem, 5.2vw, 4.75rem), 1): one per section.
-- **Title** (500, 1.25rem): sub-items, service names.
-- **Body** (400, 1.125rem, 1.625): max 40-52ch.
-- **Label** (500, 15px): nav links, form labels.
+- **Display** (900, clamp(2.6rem, 6vw, 5.25rem), 0.98): só o título do hero.
+- **Headline** (900, clamp(2rem, 4vw, 3.5rem), 1.02): um por secção, terminado em ponto final.
+- **Title** (500, 1.25rem): nomes de serviços, sectores, razões, perguntas.
+- **Body** (400, 1.125rem, 1.625): parágrafos com 48 a 62ch.
+- **Label** (500, 15px): navegação, etiquetas de formulário, legendas.
+- **Small** (400, 14px): ajuda e erros de formulário.
 
 ### Named Rules
-**The No Kicker Rule.** No eyebrow labels above headings. Status lives inside the heading ("Fachadas e vidros, já hoje").
+**The No Kicker Rule.** Nenhuma etiqueta por cima dos títulos. Os títulos do cliente vêm em maiúsculas no documento e são compostos em frase.
 
 ## Layout
 
-Single page, max container 1400px, gutters 20px mobile and 40px desktop. Sections are tall (16-22vh vertical padding) because each one is a stretch of the descent. Desktop compositions are asymmetric on a 12-column grid (offsets of 18-36%); everything collapses to one column under 768px. Hero is `min-h-[100dvh]` with copy anchored bottom left.
+Contentor de 1320px, margens de 20px (mobile) e 40px (desktop), secções com 96px a 128px de respiro vertical. Grelha de 12 colunas no desktop com composições assimétricas (imagem 5 colunas e texto 7, título 4 e conteúdo 8). Tudo colapsa para uma coluna abaixo de 768px; serviços passam de separadores para linhas expansíveis abaixo de 1024px.
 
 ## Elevation & Depth
 
-Flat DOM, real depth in WebGL. No box shadows. Readability over the 3D scene comes from radial navy scrims behind text blocks. Depth cues (fog, sky gradient, distant skyline) belong to the scene.
+Plano. Sem sombras, excepto a linha de 1px do menu quando fica sólido. A profundidade vem da alternância branco, papel e navy, e da sobreposição do painel de Segurança sobre a fotografia.
 
 ## Shapes
 
-Square-cornered world with a single radius: 4px on buttons, fields and the form panel. Mullion grid and the isotipo pattern (manual p.22) are the only recurring geometry.
+Cantos rectos em imagens e secções; 4px em botões, campos e no cartão do formulário. Círculos só para os números do processo e os marcadores de valores.
 
 ## Components
 
 ### Buttons
-- **Shape:** 4px radius, 52px tall, one line always.
-- **Primary:** lime on navy text, Lufga Medium.
-- **Press:** scale(0.97) in 160ms with ease-out cubic-bezier(0.23, 1, 0.32, 1); hover lightens to #a3df52 only on fine pointers.
-- **Secondary:** text link with a 1px underline at 0.3em offset that turns lime on hover.
-
-### Inputs
-- **Style:** navy-deep fill, 1px mist border at 22%, 4px radius, 52px tall; label above, error below.
-- **Focus:** border turns lime. **Error:** border #e0866b with message in #f0a189.
+- **Primário:** lima com texto navy (sobre fundo escuro); navy com texto branco (sobre fundo claro). 52px de altura, uma linha sempre.
+- **Contorno claro:** borda branca a 45% no hero.
+- **Pressão:** scale(0.97) em 160ms com cubic-bezier(0.23, 1, 0.32, 1); hover só em ponteiro fino.
 
 ### Navigation
-Fixed, 72px, transparent gradient over the hero, solid navy-deep with a hairline once scrolled past 120px.
+Transparente sobre o hero, branca com linha inferior depois dele. Links sem sublinhado em repouso, sublinhado no hover. Abaixo de 1024px, menu de ecrã inteiro.
 
-### Altitude HUD (signature)
-Right edge on desktop: label, altitude in Lufga tabular numerals and a vertical track with a lime square that descends with the scroll. On mobile, the altitude number alone, top right.
+### Inputs
+Fundo branco, borda #dfe3e6, foco com borda navy e anel lima a 45%. Etiqueta em cima, erro em baixo.
 
-### A Descida (signature scene)
-Three.js scene in `src/scene`: shader facade with grime and a clean mask painted by the jet, procedural octocopter with tethered hose to a ground station, lime jet and spray, dusk sky with skyline, landing apron tiled with the brand pattern.
+### Serviços (signature)
+No desktop, lista de cinco serviços à esquerda (separadores com teclado) e painel com imagem, texto e aplicações à direita.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep the page dark; copy on the scene always gets a `.scrim`.
-- **Do** use custom ease-out curves and keep UI motion under 300ms; scroll-scrubbed motion is the exception.
-- **Do** honor `prefers-reduced-motion` with the static, already-clean facade.
-- **Do** load the 3D scene after first paint, cap DPR at 1.5.
+- **Do** manter os textos do cliente tal como enviados (`content/textos-cliente.md`).
+- **Do** marcar a galeria como "Imagens ilustrativas" até haver trabalhos reais autorizados.
+- **Do** respeitar `prefers-reduced-motion`: o conteúdo aparece sem animação.
 
 ### Don't:
-- **Don't** use lime for decoration or body text.
-- **Don't** draw a drone in the logo or as an icon (client request).
-- **Don't** use em dashes, eyebrow labels or invented metrics.
-- **Don't** add a second accent colour or a light-mode section.
+- **Don't** atribuir à BOOMING trabalhos, clientes ou números que não existem.
+- **Don't** usar 3D, parallax ou efeitos de scroll pesados (decisão do Eládio, Out. 2026).
+- **Don't** usar travessões, etiquetas por cima dos títulos ou cartões com sombra.

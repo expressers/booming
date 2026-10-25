@@ -1,28 +1,14 @@
-# Booming Soluções Aéreas
+# BOOMING Soluções Aéreas
 
-Site da Booming Soluções Aéreas: limpeza de fachadas em altura com drones, em Luanda.
-
-O conceito é **A Descida**: a página é a fachada de uma torre de vidro. O scroll desce um drone de limpeza andar a andar, o jacto limpa o vidro e o conteúdo aparece. No fim, o drone aterra junto ao formulário de cotação.
-
-## Proposta 2: Do lado de dentro (`/proposta-2/`)
-
-Lançamento de produto, em navy e branco. A primeira cena fica dentro de um escritório, a olhar por um vidro sujo. Lá fora, um drone limpa a janela linha a linha com o scroll, e no fim a câmara atravessa o vidro para o branco. Seguem-se:
-
-- o drone em vista explodida;
-- um manifesto que se acende palavra a palavra;
-- os serviços em panorâmica horizontal;
-- o fecho em navy com a cotação.
-
-O código está em `src/v2` e a entrada em `proposta-2/index.html`.
+Site institucional da BOOMING Soluções Aéreas: limpeza, manutenção e inspecção com drones, em Angola. Uma página com as secções e os textos enviados pelo cliente (`content/textos-cliente.md`).
 
 ## Stack
 
 - Bun, Vite, React, TypeScript
 - Tailwind CSS v4
-- Three.js (cena em `src/scene`, carregada depois do primeiro ecrã)
-- GSAP com ScrollTrigger e SplitText, Lenis para o scroll suave
 - Ícones Phosphor
 - Fontes da marca (Lufga e Ubuntu) alojadas em `public/fonts`
+- Fotografias de banco de imagens (Unsplash, licença livre) em `public/img`; origem em `public/img/SOURCES.txt`
 
 ## Comandos
 
@@ -38,24 +24,24 @@ bun run preview  # servir o build
 - `main`: produção
 - `develop`: trabalho em curso. Abrir PR de `develop` para `main`.
 
-## Por preencher (dados do cliente)
+As propostas anteriores com 3D (A Descida e Do lado de dentro) estão guardadas na tag `propostas-3d`.
+
+## Por preencher
 
 Em `src/config.ts`:
 
 - número de WhatsApp (sem ele, o formulário abre o WhatsApp para o visitante escolher o contacto)
-- email, Instagram, LinkedIn
+- email
 
-Também em falta: domínio, textos validados pelo Carlos e as imagens reais das demonstrações (Novembro).
+Também em falta: domínio final e fotografias reais dos trabalhos, para substituir as imagens ilustrativas.
 
 ## Estrutura
 
 ```
 src/
-  App.tsx          scroll, ScrollTrigger da descida, revelações
-  scene/           Three.js: fachada (shader), drone, mangueira, jacto
-  sections/        secções da página
-  components/      nav, HUD de altitude, logo
-  config.ts        contactos e listas do formulário
+  App.tsx          ordem das secções e revelação ao scroll
+  content.ts       todos os textos do site
+  config.ts        contactos e lista de serviços do formulário
+  sections/        uma secção por ficheiro
+  components/      navegação e logo
 ```
-
-Contexto de produto em `PRODUCT.md`; contrato de direcção em `.impeccable/surfaces/`.

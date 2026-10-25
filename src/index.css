@@ -33,12 +33,11 @@
   --color-navy: #192730;
   --color-navy-deep: #111c23;
   --color-navy-2: #2d3d4b;
-  --color-ink: #1a1a1a;
-  --color-graphite: #3c3c3b;
   --color-mist: #e6e6e6;
+  --color-paper: #f5f6f7;
+  --color-line: #dfe3e6;
   --color-lime: #91d336;
-  --color-olive: #adb65d;
-  --color-paper: #f4f5f6;
+  --color-lime-ink: #4d7a12;
   --font-display: 'Lufga', 'Ubuntu', system-ui, sans-serif;
   --font-sans: 'Ubuntu', system-ui, sans-serif;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -46,11 +45,16 @@
 }
 
 html {
-  background: var(--color-navy);
-  color: var(--color-mist);
-  color-scheme: dark;
-  scrollbar-color: var(--color-navy-2) var(--color-navy-deep);
+  background: #ffffff;
+  color: var(--color-navy);
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -66,22 +70,17 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-lime);
+  outline: 2px solid var(--color-navy);
   outline-offset: 3px;
+}
+.on-dark :focus-visible {
+  outline-color: var(--color-lime);
 }
 
 input,
 select,
 textarea {
-  caret-color: var(--color-lime);
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.tnum {
-  font-variant-numeric: tabular-nums;
+  caret-color: var(--color-navy);
 }
 
 h1,
@@ -89,14 +88,19 @@ h2,
 h3 {
   text-wrap: balance;
 }
+p {
+  text-wrap: pretty;
+}
 
-/* Primary action: the only lime surface on the page */
+@layer components {
+/* Buttons: one radius (4px) for every control on the page */
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   height: 3.25rem;
-  padding: 0 1.4rem;
+  padding: 0 1.5rem;
   border-radius: 4px;
   font-family: var(--font-display);
   font-weight: 500;
@@ -104,56 +108,68 @@ h3 {
   white-space: nowrap;
   transition:
     transform 160ms var(--ease-out),
-    background-color 200ms ease;
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
 }
 .btn:active {
   transform: scale(0.97);
+}
+.btn svg {
+  transition: transform 200ms var(--ease-out);
 }
 .btn-primary {
   background: var(--color-lime);
   color: var(--color-navy);
 }
-.btn-primary svg {
-  transition: transform 200ms var(--ease-out);
+.btn-navy {
+  background: var(--color-navy);
+  color: #fff;
+}
+.btn-ghost-light {
+  border: 1px solid rgb(255 255 255 / 0.45);
+  color: #fff;
 }
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover {
     background: #a3df52;
   }
-  .btn-primary:hover svg {
+  .btn-navy:hover {
+    background: var(--color-navy-2);
+  }
+  .btn-ghost-light:hover {
+    border-color: #fff;
+    background: rgb(255 255 255 / 0.08);
+  }
+  .btn:hover svg {
     transform: translateX(3px);
   }
 }
 
 .link {
   text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, var(--color-mist) 35%, transparent);
+  text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
   text-underline-offset: 0.3em;
   text-decoration-thickness: 1px;
   transition: text-decoration-color 200ms ease;
 }
 @media (hover: hover) and (pointer: fine) {
   .link:hover {
-    text-decoration-color: var(--color-lime);
+    text-decoration-color: currentColor;
   }
 }
-
-/* Soft navy pool behind copy that sits on the facade */
-.scrim {
-  position: relative;
-  isolation: isolate;
+/* Navigation links: quiet at rest, underline on hover */
+.link-quiet {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.35em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 200ms ease;
 }
-.scrim::before {
-  content: '';
-  position: absolute;
-  inset: -18% -14%;
-  z-index: -1;
-  background: radial-gradient(
-    closest-side,
-    color-mix(in oklab, var(--color-navy-deep) 82%, transparent),
-    transparent
-  );
-  pointer-events: none;
+@media (hover: hover) and (pointer: fine) {
+  .link-quiet:hover {
+    text-decoration-color: currentColor;
+  }
 }
 
 .field {
@@ -161,34 +177,78 @@ h3 {
   height: 3.25rem;
   padding: 0 1rem;
   border-radius: 4px;
-  border: 1px solid color-mix(in oklab, var(--color-mist) 22%, transparent);
-  background: var(--color-navy-deep);
-  color: var(--color-mist);
+  border: 1px solid var(--color-line);
+  background: #fff;
+  color: var(--color-navy);
   font-size: 1rem;
-  transition: border-color 160ms ease;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 textarea.field {
   height: auto;
-  min-height: 7.5rem;
+  min-height: 8rem;
   padding: 0.85rem 1rem;
   resize: vertical;
 }
 .field::placeholder {
-  color: color-mix(in oklab, var(--color-mist) 55%, transparent);
+  color: color-mix(in oklab, var(--color-navy) 50%, transparent);
 }
 .field:focus-visible {
   outline: none;
-  border-color: var(--color-lime);
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lime) 45%, transparent);
 }
 .field[aria-invalid='true'] {
-  border-color: #e0866b;
+  border-color: #c2412d;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition-duration: 1ms !important;
-    animation-duration: 1ms !important;
+}
+
+/* Section reveal: content is visible by default; motion only adds a short rise. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    transition:
+      opacity 700ms var(--ease-out),
+      transform 700ms var(--ease-out);
   }
+  .js [data-reveal]:not([data-in]) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Hero photo settles once on load */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes settle {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .hero-photo {
+    animation: settle 2.4s var(--ease-out) both;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*='animation:fade'] {
+    animation: none !important;
+  }
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
 }

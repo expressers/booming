@@ -1,30 +1,33 @@
-// Facts only: each line is something the Booming method does, as stated by Carlos.
-const facts = ['Ninguém suspenso.', 'Pilotagem certificada.', 'Tudo a partir do chão.']
+import { CalendarCheck, Cpu, Gauge, Leaf, ShieldCheck, SlidersHorizontal, type Icon } from '@phosphor-icons/react'
+import { why } from '../content'
+
+const icons: Icon[] = [Cpu, ShieldCheck, Gauge, Leaf, SlidersHorizontal, CalendarCheck]
 
 export default function Why() {
   return (
-    <section id="porque" aria-labelledby="porque-title" className="relative py-[22vh]">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <h2 id="porque-title" className="sr-only">
-          Porquê a Booming
-        </h2>
-        <div className="flex flex-col gap-[6vh]">
-          {facts.map((w, i) => (
-            <p
-              key={w}
-              data-wipe
-              className={`scrim w-fit font-display text-[clamp(2.8rem,8vw,5.5rem)] font-black leading-[0.95] tracking-[-0.035em] ${
-                i === 1 ? 'md:ml-[18%]' : i === 2 ? 'text-lime md:ml-[30%]' : ''
-              }`}
-            >
-              {w}
-            </p>
-          ))}
+    <section aria-labelledby="porque-title" className="mx-auto max-w-[1320px] px-5 py-24 md:px-10 md:py-32">
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-4">
+          <h2
+            id="porque-title"
+            data-reveal
+            className="font-display text-[clamp(2rem,4vw,3.5rem)] font-black leading-[1.02] tracking-[-0.025em] lg:sticky lg:top-28"
+          >
+            {why.title}
+          </h2>
         </div>
-        <p data-wipe className="scrim mt-[12vh] max-w-[38ch] text-xl leading-relaxed md:ml-[30%]">
-          A equipa planeia o voo, o drone faz a subida e o trabalho em altura. O risco fica com a máquina, não com as
-          pessoas.
-        </p>
+        <ul className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:col-span-8">
+          {why.items.map((w, i) => {
+            const I = icons[i]
+            return (
+              <li key={w.name} data-reveal className="border-t border-line pt-6">
+                <I size={28} weight="light" aria-hidden />
+                <h3 className="mt-5 font-display text-xl font-medium">{w.name}</h3>
+                <p className="mt-3 leading-relaxed text-navy/70">{w.text}</p>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </section>
   )
