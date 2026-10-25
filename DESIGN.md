@@ -15,7 +15,7 @@ colors:
 typography:
   display:
     fontFamily: "Lufga, Ubuntu, system-ui, sans-serif"
-    fontSize: "clamp(2.6rem, 7vw, 6.25rem)"
+    fontSize: "clamp(2.6rem, 7vw, 6rem)"
     fontWeight: 900
     lineHeight: 0.95
     letterSpacing: "-0.035em"
@@ -106,7 +106,7 @@ O site é um voo. Abre colado ao vidro de uma torre e, com o scroll, o drone afa
 **Body Font:** Ubuntu (400 e 500), self-hosted woff2
 
 ### Hierarchy
-- **Display** (900, clamp(2.6rem, 7vw, 6.25rem), 0.95): só o título do hero, sobe palavra a palavra ao abrir.
+- **Display** (900, clamp(2.6rem, 7vw, 6rem), 0.95): só o título do hero, sobe palavra a palavra ao abrir.
 - **Headline** (900, clamp(2.25rem, 4.6vw, 4.25rem), 0.98): um por secção, terminado em ponto final.
 - **Lead** (Lufga 500, até 2.75rem): o primeiro parágrafo da apresentação, que "limpa" palavra a palavra com o scroll.
 - **Title** (500, 1.375 a 1.875rem): serviços, sectores, razões, passos, perguntas.
@@ -145,7 +145,7 @@ Cantos rectos em imagens e secções; 4px em botões, campos e no cartão do for
 - **Desactivado:** 45% de opacidade (envio de orçamento enquanto não há número de WhatsApp).
 
 ### Navigation
-Transparente sobre o hero, navy profundo depois dele. CTA lima sempre visível a partir de 640px. Menu de ecrã inteiro abaixo de 1024px (folha branca).
+Transparente sobre o hero, navy profundo depois dele. CTA lima aparece quando o botão do hero sai de cena (um só botão principal por ecrã). Menu de ecrã inteiro abaixo de 1024px (folha branca).
 
 ### Inputs
 Fundo branco, borda #dfe3e6, foco com borda navy e anel lima a 45%.

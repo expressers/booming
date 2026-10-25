@@ -60,7 +60,7 @@ export default function Services() {
             ref={track}
             className="flex flex-col gap-20 px-5 pb-24 md:px-10 lg:motion-safe:h-full lg:motion-safe:w-max lg:motion-safe:flex-row lg:motion-safe:items-center lg:motion-safe:gap-[6vw] lg:motion-safe:px-[max(2.5rem,calc((100vw-1320px)/2+2.5rem))] lg:motion-safe:pb-0"
           >
-            {services.map((s, i) => (
+            {services.map((s) => (
               <article
                 key={s.id}
                 className="grid gap-8 lg:grid-cols-12 lg:gap-12 lg:motion-safe:w-[min(1180px,84vw)] lg:motion-safe:shrink-0"
@@ -70,7 +70,8 @@ export default function Services() {
                     data-pan-img
                     src={s.image}
                     alt={s.alt}
-                    loading={i < 2 ? 'eager' : 'lazy'}
+                    loading="eager"
+                    decoding="async"
                     className="absolute inset-0 h-full w-full scale-[1.18] object-cover"
                   />
                 </div>

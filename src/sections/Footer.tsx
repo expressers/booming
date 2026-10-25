@@ -2,6 +2,8 @@ import Logo from '../components/Logo'
 import { CONTACT } from '../config'
 import { footer, navLinks } from '../content'
 
+const YEAR = new Date().getFullYear()
+
 export default function Footer() {
   return (
     <footer className="on-dark bg-navy-deep text-white">
@@ -23,7 +25,8 @@ export default function Footer() {
         </nav>
       </div>
       <div className="mx-auto flex max-w-[1320px] flex-wrap justify-between gap-4 border-t border-white/10 px-5 py-6 text-sm text-white/55 md:px-10">
-        <span>© {new Date().getFullYear()} {footer.name}</span>
+        <span>© {YEAR} {footer.name}</span>
+        <span>Imagens e vídeos ilustrativos de banco de imagens.</span>
         <span>{CONTACT.location}</span>
       </div>
     </footer>

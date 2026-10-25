@@ -71,25 +71,36 @@ export default function Hero() {
       ctx2d.drawImage(img, (cv.width - w) / 2, (cv.height - h) / 2, w, h)
     }
 
-    ;(async () => {
-      for (const i of loadOrder(COUNT)) {
-        if (cancelled) return
-        const img = new Image()
-        img.decoding = 'async'
-        img.src = frameUrl(set, i)
-        try {
-          await img.decode()
-        } catch {
-          continue
-        }
-        imgs[i] = img
-        if (i === 0) cv.dataset.ready = ''
-        if (Math.abs(i - state.f) < 16) {
-          drawn = -1
-          draw()
-        }
+    // Frames load after the page itself, a few at a time. On data saver or 2G only the coarse
+    // pass loads (every 16th still), which still gives a flight, just in bigger steps.
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+    const lean = !!conn && (conn.saveData === true || /2g/.test(conn.effectiveType ?? ''))
+    const queue = loadOrder(COUNT).filter((i) => !lean || i % 16 === 0)
+    const loadOne = async (i: number) => {
+      const img = new Image()
+      img.decoding = 'async'
+      img.src = frameUrl(set, i)
+      try {
+        await img.decode()
+      } catch {
+        return
       }
-    })()
+      if (cancelled) return
+      imgs[i] = img
+      if (i === 0) cv.dataset.ready = ''
+      if (Math.abs(i - state.f) < 16) {
+        drawn = -1
+        draw()
+      }
+    }
+    const worker = async () => {
+      while (!cancelled && queue.length) await loadOne(queue.shift()!)
+    }
+    const start = () => {
+      if (!cancelled) for (let k = 0; k < 4; k++) worker()
+    }
+    if (document.readyState === 'complete') start()
+    else window.addEventListener('load', start, { once: true })
 
     size()
     window.addEventListener('resize', size)
@@ -101,16 +112,17 @@ export default function Hero() {
       })
       tl.to(state, { f: COUNT - 1, duration: 1, onUpdate: draw }, 0)
         // Opening card leaves as the camera pulls off the glass
-        .to('[data-scene="1"]', { opacity: 0, y: -60, duration: 0.12 }, 0.1)
+        .to('[data-scene="1"]', { autoAlpha: 0, y: -60, duration: 0.12 }, 0.1)
         // The statement holds the middle of the flight
-        .fromTo('[data-scene="2"]', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.1 }, 0.28)
-        .to('[data-scene="2"]', { opacity: 0, y: -40, duration: 0.1 }, 0.62)
+        .fromTo('[data-scene="2"]', { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.1 }, 0.28)
+        .to('[data-scene="2"]', { autoAlpha: 0, y: -40, duration: 0.1 }, 0.62)
         // The city lands under navy so the next section continues the same ground
         .to('[data-veil]', { opacity: 1, duration: 0.1 }, 0.9)
     }, root)
 
     return () => {
       cancelled = true
+      window.removeEventListener('load', start)
       window.removeEventListener('resize', size)
       scenes.revert()
       intro.revert()
@@ -139,7 +151,7 @@ export default function Hero() {
 
         <div data-scene="1" className="absolute inset-x-0 bottom-0 pb-14 md:pb-20">
           <div className="mx-auto max-w-[1320px] px-5 md:px-10">
-            <h1 data-hero-in className="max-w-[14ch] font-display text-[clamp(2.6rem,7vw,6.25rem)] font-black leading-[0.95] tracking-[-0.035em]">
+            <h1 data-hero-in className="max-w-[14ch] font-display text-[clamp(2.6rem,7vw,6rem)] font-black leading-[0.95] tracking-[-0.035em]">
               <SplitWords text={hero.title} />
             </h1>
             <p data-hero-fade className="mt-7 max-w-[46ch] text-lg leading-relaxed text-white/80 md:text-xl">
@@ -157,7 +169,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div data-scene="2" className="pointer-events-none absolute inset-0 hidden items-center motion-safe:flex">
+        <div data-scene="2" aria-hidden className="pointer-events-none absolute inset-0 hidden items-center motion-safe:flex">
           <p className="mx-auto w-full max-w-[1320px] px-5 font-display text-[clamp(2rem,4.6vw,4.25rem)] font-black leading-[1.02] tracking-[-0.03em] md:px-10">
             <span className="block max-w-[20ch]">{intro.statement}</span>
           </p>

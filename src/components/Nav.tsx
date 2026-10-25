@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { lockScroll } from '../lib/motion'
+import { lockScroll, ScrollTrigger } from '../lib/motion'
 import { ArrowRight, List, X } from '@phosphor-icons/react'
 import Logo from './Logo'
 
@@ -15,6 +15,18 @@ const links = [
 export default function Nav() {
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
+  const [cta, setCta] = useState(false)
+
+  // One primary action at a time: the nav button appears once the hero's own button has gone.
+  useEffect(() => {
+    const st = ScrollTrigger.create({
+      trigger: '#topo',
+      start: () => `top+=${Math.round(window.innerHeight * 0.4)} top`,
+      end: 'max',
+      onToggle: (s) => setCta(s.isActive),
+    })
+    return () => st.kill()
+  }, [])
 
   // The nav sits over the hero photo until the hero leaves the viewport.
   useEffect(() => {
@@ -67,7 +79,7 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <a href="#contactos" className="btn btn-primary !h-11 !px-4 text-[15px] hidden sm:inline-flex">
+          <a href="#contactos" className={`btn btn-primary !h-11 !px-4 text-[15px] hidden ${cta ? 'sm:inline-flex' : ''}`}>
             Solicitar orçamento
             <ArrowRight size={16} weight="bold" aria-hidden />
           </a>
