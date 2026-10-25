@@ -1,0 +1,17 @@
+# Unsplash (licença livre). Ficheiro local -> imagem original.
+tower.webp https://images.unsplash.com/photo-1690944851207-3f288c8fcd0b
+drone-white.webp https://images.unsplash.com/photo-1753781467329-416d05e7e477
+solar-aerial.webp https://images.unsplash.com/photo-1628206554201-41ebb06ef313
+solar-field.webp https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9
+drone-clouds.webp https://images.unsplash.com/photo-1456615913800-c33540eac399
+drone-dusk.webp https://images.unsplash.com/photo-1477899447710-90571e12f4ae
+roof-a.webp https://images.unsplash.com/photo-1669003152272-c97a577284ad
+facade-c.webp https://images.unsplash.com/photo-1523477593243-78bbf626fd3b
+roof-c.webp https://images.unsplash.com/photo-1758304481667-71d545c91241
+drone-ops.webp https://images.unsplash.com/photo-1584598416417-84bd357908ef
+city-b.webp https://images.unsplash.com/photo-1736670996121-c6f5e5bf04b9
+drone-spray.webp https://images.unsplash.com/photo-1713952152768-5f28b8093166
+
+# Pexels (licença livre). Vídeo de origem -> ficheiros no site.
+seq/d/*.webp, seq/m/*.webp https://www.pexels.com/video/drone-footage-of-a-city-4686979/ (0-12 s, 8 fps)
+video/orbita.mp4, video/orbita.webp https://www.pexels.com/video/aerial-view-of-towering-skyscraper-in-urban-cityscape-31320451/ (2-11 s)

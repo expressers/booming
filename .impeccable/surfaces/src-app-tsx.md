@@ -5,23 +5,23 @@ primary_target: "src/App.tsx"
 related_targets: []
 ---
 
-Scope: single-page site for Booming Soluções Aéreas (src/App.tsx and its sections). Mode: Persuade.
-Audience: facility managers and safety-conscious companies in Luanda. Action: request a quote that opens WhatsApp prefilled. Proof: the mechanism dramatized (tethered drone cleaning a facade), no invented claims. Constraints: Portuguese, fast on mobile networks, no literal drone logo, IDV colours and fonts.
+Scope: single-page cinematic site for BOOMING Soluções Aéreas. Mode: Persuade.
+Audience: facility managers, banks, hotels, hospitals, solar and industrial operators in Angola. Action: request a quote (WhatsApp prefilled). Proof: the client's own service descriptions and process; stock photo and video labelled illustrative. Constraints: Portuguese, client copy verbatim, no Three.js 3D, 60-30-10 colour (Eládio, 25/10/2026), fast on mobile.
 
 ## Direction contract
 
-THESIS: The page is a glass tower facade and scrolling is the job: each scroll step lowers a tethered cleaning drone one floor and its jet cleans the glass, revealing the copy. Refuses the category default of a stock photo hero over three service cards.
+THESIS: The cleaning pass. The page is a drone flight: it opens against tower glass and pulls back over the city on scroll, then uncovers every image top to bottom behind a lime edge. Refuses the previous institutional page ("parece feito por IA") and the 3D concepts.
 
-OWN-WORLD: Night facade in navy #192730 and #2d3d4b glass with grime; lime #91d336 is the only light (drone LEDs, jet, HUD marker, primary action); grey #e6e6e6 text. Lufga Black display against Ubuntu body; mullion grid and the angular brand line pattern as structure; 4px radius on controls only.
+OWN-WORLD: Navy deep and navy as the 60, white and paper as the 30, lime #91d336 as the 10 (action, wipe edge, process route). Lufga Black headlines, Ubuntu body, hairlines not cards.
 
-STORY: Understand that facades can be cleaned at height with nobody hanging from a rope; believe it by watching the drone do it floor by floor; act by requesting a quote at ground level.
+STORY: Fly in (hero scrub), understand (intro clears word by word, about, services pan), believe (sectors, reasons, process route, safety over drone video), act (quote form).
 
-FIRST VIEWPORT: Full-bleed WebGL dusk sky and the top of the tower; the drone hovers right of centre with its hose falling out of frame. Bottom left, Lufga Black headline "Para além do alcance." at about 7.5vw, two lines max, a 20-word subline, lime "Pedir cotação" button. Slim nav top. Altitude HUD on the right edge.
+FIRST VIEWPORT: Frame 1 of the flight, glass facade close up with the city beyond; headline "O futuro da limpeza e manutenção está no ar." rising word by word bottom left, subtitle, lime "Solicitar orçamento" plus outline "Conhecer serviços". Transparent nav.
 
-FORM: brief-pinned direction from Eládio (cinematic, 3D drone descending with ScrollTrigger while cleaning); seed roll waived, direction pinned in his words: "Quero um site cinematográfico, que use elementos 3D, a intenção é ter um drone 3d no site a descer com o scroll trigger limpando"; signature interaction: scroll-scrubbed descent painting a clean mask on dirty glass. Build path: code-led (no image generation available).
+FORM: brief-pinned by Eládio (cinematic, scroll-scrubbed drone video hero, Emil/Taste/Impeccable, 60-30-10). Seed 2fd32949 rolled the curtain-wall grid and cleaning-pass direction; kept as the motion grammar under the pinned brief. Raise from the transit-map challenger (declined): one line burning brightest, used as the lime process route. Build path: code-led.
 
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster and video carrying its provenance
 
 ## Unresolved
 
-WhatsApp number, email, socials, domain; lime vs Carlos's no-green remark; per-service quote fields.
+WhatsApp number and email (client: "a confirmar"); final domain; real project photos and footage.
