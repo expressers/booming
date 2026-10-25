@@ -24,7 +24,6 @@ bun run preview  # servir o build
 - `main`: produção
 - `develop`: trabalho em curso. Abrir PR de `develop` para `main`.
 
-As propostas anteriores com 3D (A Descida e Do lado de dentro) estão guardadas na tag `propostas-3d`.
 
 ## Por preencher
 
